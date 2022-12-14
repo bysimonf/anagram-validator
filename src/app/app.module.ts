@@ -1,13 +1,17 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
+import { AnagramValidatorComponent } from './anagram-validator/anagram-validator.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AnagramValidatorComponent
   ],
   imports: [
+    FormsModule,
     BrowserModule
   ],
   providers: [],

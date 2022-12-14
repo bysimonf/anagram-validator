@@ -1,0 +1,7 @@
+<h1>Anagram validator</h1>
+<p>Definition of anagram: word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.</p>
+<label>Please insert 2 words below:</label>
+<input [(ngModel)]="firstEnteredWord" type="text">
+<input [(ngModel)]="secondEnteredWord" type="text">
+<button (click)="compareLength()">Compare the 2 words</button>
+<p>{{ anagramFeedback }}</p>
