@@ -20,9 +20,9 @@ export class AnagramValidatorComponent implements OnInit {
 
   anagramFeedback = ''
 
-  // 1. compare the length
-  // 2. sort alphabetically
-  // 3. compare the sorted words
+  // 1. compare the length of two words
+  // 2. sort each word alphabetically 
+  // 3. compare the sorted words for strict equality
 
   compareLength = () => {
     if (this.firstEnteredWord.length === this.secondEnteredWord.length) {
@@ -38,30 +38,19 @@ export class AnagramValidatorComponent implements OnInit {
   }
 
   sortWord = (word: string): string => {
-    let wordSorted = [...word] // using spread operator to convert string into array
-    let temporaryLetterStorage = ''
-
-    const compareCharacters = () => {
-    
-      for (let i = 0; i < wordSorted.length - 1; i++) {
-        
-        if (wordSorted[i] < wordSorted[i + 1] || wordSorted[i] === wordSorted[i + 1]) {
-          console.log('letter already ordered')
-        }
-        else {
-          temporaryLetterStorage = wordSorted[i + 1]
-          wordSorted[i + 1] = wordSorted[i]
-          wordSorted[i] = temporaryLetterStorage 
-          
-          compareCharacters() // using recursion to repeat the alphabetical sorting until complete
+    for (let i = 0; i < word.length - 1; i++) { // first loop iterates through each character
+      for (let j = 0; j < word.length - 1 - i; j++) { // second loop compares characters (the one adjacent to each other)
+        if (word[j] > word[j + 1]) {
+          let wordSorted = [...word] // using spread operator to convert string into array which is necessary
+          const temp = word[j]
+          wordSorted[j] = word[j + 1]
+          wordSorted[j + 1] = temp
+          word = wordSorted.join('') // convert array back to string        
         }
       }
     }
-
-    compareCharacters()
-    
-    let wordSortedString = wordSorted.join('') // convert array back to string
-    return wordSortedString 
+  
+    return word
   }
 
   compareWords = () => {
